@@ -24,6 +24,24 @@ There are differing classes of flowers, separated be the number of genes in thei
 Additionally, flowers of differing species can breed together to create new, derivative species (e.g. Tulip + Lily = Tulily)
 This will allow the player to create new flower species via cross-breeding, including new species unique to this game (such as the eponymous "Brittlewing")
 
+### Species
+
+|Name        |Class   |Genes|
+|------------|--------|-----|
+|Popper      |Common  |2    |
+|Genie       |Common  |2    |
+|Lull        |Common  |2    |
+|Frazzil     |Uncommon|3    |
+|Thrombus    |Uncommon|3    |
+|Zydrill     |Uncommon|3    |
+|Seacomb     |Rare    |4    |
+|Marzipoly   |Rare    |4    |
+|Chrysalynn  |Rare    |4    |
+|Brittlewing |Exotic  |5    |
+|Nebularaven |Exotic  |5    |
+|Zorastapodia|Exotic  |5    |
+
+
 ## Story
 
 You just took ownership of a flower shop, and are growing flowers to sell.
