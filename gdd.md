@@ -32,20 +32,20 @@ this game (such as the eponymous "Brittlewing")
 
 ### Species
 
-| Name         | Class    | Genes |
-| ------------ | -------- | ----- |
-| Popper       | Common   | 2     |
-| Genie        | Common   | 2     |
-| Lull         | Common   | 2     |
-| Frazzil      | Uncommon | 3     |
-| Thrombus     | Uncommon | 3     |
-| Zydrill      | Uncommon | 3     |
-| Seacomb      | Rare     | 4     |
-| Marzipoly    | Rare     | 4     |
-| Chrysalynn   | Rare     | 4     |
-| Brittlewing  | Exotic   | 5     |
-| Nebularaven  | Exotic   | 5     |
-| Zorastapodia | Exotic   | 5     |
+| Name         | Class    | Trait 1 | Trait 2 | Trait 3 | Trait 4 | Trait 5 |
+| ------------ | -------- | ------- | ------- | ------- | ------- | ------- |
+| Popper       | Common   | Red     | White   |         |         |         |
+| Genie        | Common   | Yellow  | White   |         |         |         |
+| Lull         | Common   | Blue    | White   |         |         |         |
+| Frazzil      | Uncommon | Red     | Yellow  | White   |         |         |
+| Thrombus     | Uncommon | Blue    | Red     | White   |         |         |
+| Zydrill      | Uncommon | Yellow  | Green   | White   |         |         |
+| Seacomb      | Rare     | Blue    | Green   | Yellow  | White   |         |
+| Marzipoly    | Rare     | Red     | Blue    | Green   | White   |         |
+| Chrysalynn   | Rare     | Red     | Magenta | Cyan    | White   |         |
+| Brittlewing  | Exotic   | Red     | Green   | Blue    | White   | eXotic  |
+| Nebularaven  | Exotic   | Red     | Blue    | Magenta | White   | eXotic  |
+| Zorastapodia | Exotic   | Cyan    | Magenta | Yellow  | White   | eXotic  |
 
 ## Story
 
