@@ -61,7 +61,7 @@ public class FlowerPlotGrid : MonoBehaviour
                 {
                     continue;
                 }
-                if (filledNeighbor.flower.species == flowerPlot.flower.species)
+                if (filledNeighbor.flower.speciesType == flowerPlot.flower.speciesType)
                 {
                     List<Vector2Int> emptyNeighbors = GetEmptyNeighbors(location);
                     if (emptyNeighbors.Count > 0)
@@ -70,7 +70,7 @@ public class FlowerPlotGrid : MonoBehaviour
                         notAbleToBreed.Add(location);
                         notAbleToBreed.Add(filledNeighbor.coordinates);
                         print(string.Format("breeding {0} with {1} into {2}", location, filledNeighbor.coordinates, emptyNeighbor));
-                        flowerPlots[emptyNeighbor].AddFlower(flowerPlot.flower.species, flowerPlot.flower.genome.Cross(filledNeighbor.flower.genome));
+                        flowerPlots[emptyNeighbor].AddFlower(flowerPlot.flower.speciesType, flowerPlot.flower.genome.Cross(filledNeighbor.flower.genome));
                         notAbleToBreed.Add(emptyNeighbor);
                     }
                 }

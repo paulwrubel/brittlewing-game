@@ -5,17 +5,17 @@ using System.Linq;
 public class Genome
 {
 
-    public Species species;
+    public SpeciesType speciesType;
     public List<Gene> genes;
-    public Genome(Species species, string genomeString)
+    public Genome(SpeciesType species, string genomeString)
     {
-        this.species = species;
+        this.speciesType = species;
         this.genes = ParseGenomeString(species, genomeString);
     }
 
-    public Genome(Species species, List<Gene> genes)
+    public Genome(SpeciesType species, List<Gene> genes)
     {
-        this.species = species;
+        this.speciesType = species;
         this.genes = genes;
     }
 
@@ -24,9 +24,9 @@ public class Genome
     {
         Genome a = this;
 
-        if (a.species != b.species)
+        if (a.speciesType != b.speciesType)
         {
-            throw new System.Exception(string.Format("genome A ({0}) is from a different species than genome B ({1})", a.species, b.species));
+            throw new System.Exception(string.Format("genome A ({0}) is from a different species than genome B ({1})", a.speciesType, b.speciesType));
         }
         if (a.genes.Count != b.genes.Count)
         {
@@ -34,7 +34,7 @@ public class Genome
         }
 
         List<Gene> newGenes = a.genes.Zip(b.genes, (ag, bg) => ag.Cross(bg)).ToList<Gene>();
-        return new Genome(a.species, newGenes);
+        return new Genome(a.speciesType, newGenes);
     }
 
     public string GetGenotype()
@@ -58,15 +58,15 @@ public class Genome
     }
 
 
-    private List<Gene> ParseGenomeString(Species species, string genomeString)
+    private List<Gene> ParseGenomeString(SpeciesType speciesType, string genomeString)
     {
-        string traits = PhenomeDatabase.GetTraitsBySpecies(species);
-        if (genomeString.Length != traits.Length)
+        List<Trait> traits = SpeciesDatabase.GetSpeciesBySpeciesType(speciesType).traits;
+        if (genomeString.Length != traits.Count)
         {
-            throw new System.Exception(string.Format("invalid length of genome string ({0}) for species ({1})", genomeString, species));
+            throw new System.Exception(string.Format("invalid length of genome string ({0}) for species ({1})", genomeString, speciesType));
         }
 
-        List<Gene> genomeList = new List<Gene>(traits.Length);
+        List<Gene> genomeList = new List<Gene>(traits.Count);
         for (int i = 0; i < genomeString.Length; i++)
         {
             char geneChar = genomeString[i];
@@ -75,7 +75,7 @@ public class Genome
                 throw new System.Exception(string.Format("invalid gene number ({0}) provided to genome", geneChar.ToString()));
             }
 
-            char symbol = char.ToLowerInvariant(traits[i]);
+            char symbol = traits[i].symbol;
             Zygosity zygosity;
             switch (geneChar)
             {

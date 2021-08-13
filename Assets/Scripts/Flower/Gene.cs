@@ -2,12 +2,12 @@ using System.Collections.Generic;
 
 using ExtensionMethods;
 [System.Serializable]
-public class Gene
+public readonly struct Gene
 {
 
-    public char symbolLower;
-    public char symbolUpper;
-    public Zygosity zygosity;
+    public readonly char symbolLower;
+    public readonly char symbolUpper;
+    public readonly Zygosity zygosity;
     public Gene(char symbol, Zygosity zygosity)
     {
         this.symbolLower = char.ToLowerInvariant(symbol);
