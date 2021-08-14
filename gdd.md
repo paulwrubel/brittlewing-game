@@ -2,7 +2,11 @@
 
 ## Preamble
 
+TODO:
+
 ### Concept
+
+TODO:
 
 ## Genre and Influences
 
@@ -12,10 +16,12 @@
 
 ## Mechanics
 
+### Planting and Breeding Flowers
+
 Flowers can be planted, watered, and picked. Flowers each have a genome which
-consists of some number of genes. Two flowers can breed together to create a
-child, whose genome is determined from the genomes of its parents via a punnett
-square.
+consists of some number of genes. Two flowers can pollinate each other to create
+a child, whose genome is determined from the genomes of its parents via a
+punnett square.
 
 There are differing classes of flowers, separated be the number of genes in
 their genome:
@@ -25,12 +31,24 @@ their genome:
 - Rare (4 Genes)
 - Exotic (5 Genes)
 
-Additionally, flowers of differing species can breed together to create new,
-derivative species (e.g. Tulip + Lily = Tulily) This will allow the player to
-create new flower species via cross-breeding, including new species unique to
-this game (such as the eponymous "Brittlewing")
+Flowers can be planted at any stage, but can only be purchased and created as
+seeds. There are four stages to a flower's life:
 
-### Species
+1. Seed/Seedling
+   - A flower in this stage cannot be interacted with in any way, except to
+     remove it from the planter
+   - This is the stage flowers are always purchased in
+2. Sprouting
+   - A sprouting flower signifies that the flower can successfully grow
+   - This stage is functionally identical to a seedling and simply signifies
+     progress
+3. Flowering
+   - a flowering flower plant produces flowers, which allows the player to check
+     the variant of flower
+4. Pollinating
+   - A pollinating flower can pollinate other flowers and produce offspring
+
+### Species Table
 
 | Name         | Class    | Trait 1 | Trait 2 | Trait 3 | Trait 4 | Trait 5 |
 | ------------ | -------- | ------- | ------- | ------- | ------- | ------- |
@@ -47,6 +65,65 @@ this game (such as the eponymous "Brittlewing")
 | Nebularaven  | Exotic   | Red     | Blue    | Magenta | White   | eXotic  |
 | Zorastapodia | Exotic   | Cyan    | Magenta | Yellow  | White   | eXotic  |
 
+### Selling Flowers and Purchasing Seeds
+
+TODO: more details
+
+Flower seeds can be purchased from a vendor
+
+Flower seeds of a particular variant are always the same genetic code unless
+otherwise indicated.
+
+### Research
+
+A tutorial character named FLORIA (Flower Laboratory Operational Research and
+Improvement Assistant) will help guide the player through the initial stages of
+the game, in introduce the mechanic of research, which drives much of the game's
+progress
+
+TODO: better name for Research Tokens
+
+Flowers can be provided to a machine, which will sequence its genetic code to
+produce "Research Tokens". These tokens can be redeemed for scientific
+discoveries, which unlock new mechanics or flowers in order to progress.
+
+#### Researchable Discoveries
+
+- Ability to inspect genetic code of flowers
+  - Lv 1: Inspect 1 Gene
+  - Lv 2: Inspect 2 Gene
+  - Lv 3: Inspect 3 Gene (for applicable flowers)
+  - Lv 4: Inspect 4 Gene (for applicable flowers)
+  - Lv 5: Inspect 5 Gene (for applicable flowers)
+- Ability to pollinate across species to produce hybrid flowers
+  - Lv 1: Can cross pollinate between flowers with 2 genes each
+  - Lv 2: Can cross pollinate between flowers with 3 genes each
+  - Lv 3: Can cross pollinate between flowers with 4 genes each
+  - Lv 4: Can cross pollinate between flowers with 5 genes each
+- Hybrid flowers are no longer sterile
+  - Lv 1: Hybrid flowers can breed intra-species for 1 generations before
+    becoming sterile
+  - Lv 2: Hybrid flowers can breed intra-species for 2 generations before
+    becoming sterile
+  - Lv 3: Hybrid flowers can breed intra-species for 3 generations before
+    becoming sterile
+  - Lv 4: Hybrid flowers can breed intra-species for 4 generations before
+    becoming sterile
+  - Lv 5: Hybrid flowers can breed intra-species for 5 generations before
+    becoming sterile
+- Increased Pollination chance
+  - Lv 1: Slightly increased pollination chance (% increase TBD)
+  - Lv 2: Moderately increased pollination chance (% increase TBD)
+  - Lv 3: Greatly increased pollination chance (% increase TBD)
+  - Lv 4: Significantly increased pollination chance (% increase TBD)
+  - Lv 5: Immensely increased pollination chance (% increase TBD)
+
 ## Story
 
-You just took ownership of a flower shop, and are growing flowers to sell.
+The player is a scientist who just took ownership of a flower shop, and are
+growing flowers to sell. The player discovers a secret research facility in the
+basement of the shop, and utilize it to grow increasingly rare and beautiful
+flowers to sell and display.
+
+Use trail-and-error and logical deduction to quickly advance your discoveries,
+or simply discover new flowers randomly at your leisure!
