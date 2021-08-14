@@ -4,6 +4,7 @@ public class FlowerPlot : MonoBehaviour
 {
 
     public Vector2Int coordinates;
+    public GameManager gameManager;
     public GameObject flowerPrefab;
 
     public Flower flower;
@@ -23,7 +24,7 @@ public class FlowerPlot : MonoBehaviour
         {
             if (Input.GetMouseButtonDown(0) && !ContainsFlower())
             {
-                AddFlower(SpeciesType.Popper, new Genome(SpeciesType.Popper, "11"));
+                AddFlower(gameManager.selectedSpeciesType, new Genome(gameManager.selectedSpeciesType, gameManager.selectedGenomeString));
             }
             else if (Input.GetMouseButtonDown(1) && ContainsFlower())
             {
