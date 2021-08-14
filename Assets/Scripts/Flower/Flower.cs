@@ -2,23 +2,23 @@ using UnityEngine;
 
 public class Flower : MonoBehaviour
 {
-    public Species species;
+    public SpeciesType speciesType;
     public Genome genome;
     public VariantType variantType;
 
     private SpriteRenderer spriteRenderer;
 
-    public void Initialize(Species species, Genome genome)
+    public void Initialize(SpeciesType speciesType, Genome genome)
     {
-        this.species = species;
+        this.speciesType = speciesType;
         this.genome = genome;
-        this.variantType = PhenomeDatabase.GetVariantTypeBySpeciesAndPhenotype(this.species, this.genome.GetPhenotypeGeneric());
+        this.variantType = SpeciesDatabase.GetVariantTypeBySpeciesTypeAndPhenotype(this.speciesType, this.genome.GetPhenotypeGeneric());
     }
 
     void Start()
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
-        string spriteFilePath = string.Format("Sprites/Flowers/{0}Sprite", species.ToString() + variantType.ToString());
+        string spriteFilePath = string.Format("Sprites/Flowers/{0}Sprite", speciesType.ToString() + variantType.ToString());
         Sprite sprite = Resources.Load<Sprite>(spriteFilePath);
         spriteRenderer.sprite = sprite;
     }
