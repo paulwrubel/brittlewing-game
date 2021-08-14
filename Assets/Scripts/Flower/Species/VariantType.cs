@@ -1,6 +1,17 @@
 public enum VariantType
 {
     Black,
-    White,
+    Blue,
+    BrightPurple,
+    Grey,
+    Green,
+    Indigo,
+    Orange,
+    Pink,
+    Purple,
     Red,
+    Silver,
+    Turquoise,
+    White,
+    Yellow,
 }
