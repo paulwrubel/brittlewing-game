@@ -9,6 +9,7 @@ public class FlowerPlotGrid : MonoBehaviour
 
     public GameObject flowerPlotPrefab;
     public Vector2Int gridSize;
+    public GameManager gameManager;
 
     private Grid grid;
 
@@ -29,6 +30,7 @@ public class FlowerPlotGrid : MonoBehaviour
                 GameObject flowerPlotGO = Instantiate(flowerPlotPrefab, localPos, Quaternion.identity, transform);
                 FlowerPlot flowerPlot = flowerPlotGO.GetComponent<FlowerPlot>();
                 flowerPlot.coordinates = new Vector2Int(x, y);
+                flowerPlot.gameManager = gameManager;
 
                 flowerPlots.Add(new Vector2Int(x, y), flowerPlot);
             }
