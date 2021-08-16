@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class Toolbar : MonoBehaviour
 {
@@ -33,8 +34,11 @@ public class Toolbar : MonoBehaviour
             GameObject toolslotGO = Instantiate(toolslotPrefab, this.transform);
             RectTransform toolslotTransform = (RectTransform)toolslotGO.transform;
             toolslotTransform.sizeDelta = toolslotSize;
+
             Toolslot toolslot = toolslotGO.GetComponent<Toolslot>();
             Toggle toolslotToggle = toolslotGO.GetComponent<Toggle>();
+            TextMeshProUGUI toolslotTMP = toolslotGO.GetComponentInChildren<TextMeshProUGUI>();
+
             if (i == 0)
             {
                 toolslotToggle.isOn = true;
@@ -42,6 +46,9 @@ public class Toolbar : MonoBehaviour
 
             toolslotTransform.anchoredPosition = new Vector2(padding, -padding) + (new Vector2(toolslotSize.x + padding, 0) * i);
             toolslot.tool = tools[i];
+
+            toolslotTMP.text = toolslot.tool.displayName;
+
             toolslotToggle.group = toggleGroup;
             toolslotToggle.onValueChanged.AddListener(delegate (bool isNowToggled)
             {
