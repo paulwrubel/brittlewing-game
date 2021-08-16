@@ -48,23 +48,6 @@ seeds. There are four stages to a flower's life:
 4. Pollinating
    - A pollinating flower can pollinate other flowers and produce offspring
 
-### Species Table
-
-| Name         | Class    | Trait 1 | Trait 2 | Trait 3 | Trait 4 | Trait 5 |
-| ------------ | -------- | ------- | ------- | ------- | ------- | ------- |
-| Popper       | Common   | Red     | White   |         |         |         |
-| Genie        | Common   | Yellow  | White   |         |         |         |
-| Lull         | Common   | Blue    | White   |         |         |         |
-| Frazzil      | Uncommon | Red     | Yellow  | White   |         |         |
-| Thrombus     | Uncommon | Blue    | Red     | White   |         |         |
-| Zydrill      | Uncommon | Yellow  | Green   | White   |         |         |
-| Seacomb      | Rare     | Blue    | Green   | Yellow  | White   |         |
-| Marzipoly    | Rare     | Red     | Blue    | Green   | White   |         |
-| Chrysalynn   | Rare     | Red     | Magenta | Cyan    | White   |         |
-| Brittlewing  | Exotic   | Red     | Green   | Blue    | White   | eXotic  |
-| Nebularaven  | Exotic   | Red     | Blue    | Magenta | White   | eXotic  |
-| Zorastapodia | Exotic   | Cyan    | Magenta | Yellow  | White   | eXotic  |
-
 ### Selling Flowers and Purchasing Seeds
 
 TODO: more details
@@ -127,3 +110,118 @@ flowers to sell and display.
 
 Use trail-and-error and logical deduction to quickly advance your discoveries,
 or simply discover new flowers randomly at your leisure!
+
+## Data
+
+### Species
+
+#### Planned
+
+| Name     | Class    | Trait 1 | Trait 2 | Trait 3 | Trait 4 |
+| -------- | -------- | ------- | ------- | ------- | ------- |
+| Popper   | Common   | Red     | White   |         |         |
+| Genie    | Common   | Yellow  | White   |         |         |
+| Lull     | Common   | Blue    | White   |         |         |
+| Frazzil  | Uncommon | Red     | Yellow  | White   |         |
+| Thrombus | Uncommon | Blue    | Red     | White   |         |
+| Zydrill  | Uncommon | Yellow  | Green   | White   |         |
+| Seacomb  | Rare     | Blue    | Green   | Yellow  | White   |
+
+#### Stretch Goal
+
+| Name         | Class  | Trait 1 | Trait 2 | Trait 3 | Trait 4 | Trait 5 |
+| ------------ | ------ | ------- | ------- | ------- | ------- | ------- |
+| Marzipoly    | Rare   | Red     | Blue    | Green   | White   |         |
+| Chrysalynn   | Rare   | Red     | Magenta | Cyan    | White   |         |
+| Brittlewing  | Exotic | Red     | Green   | Blue    | White   | eXotic  |
+| Nebularaven  | Exotic | Red     | Blue    | Magenta | White   | eXotic  |
+| Zorastapodia | Exotic | Cyan    | Magenta | Yellow  | White   | eXotic  |
+
+### Variants
+
+#### Popper
+
+| Phenotype | Variant |
+| --------- | ------- |
+| 00        | Black   |
+| 01        | White   |
+| 10        | Black   |
+| 11        | Red     |
+
+#### Genie
+
+| Phenotype | Variant |
+| --------- | ------- |
+| 00        | Black   |
+| 01        | White   |
+| 10        | Orange  |
+| 11        | Yellow  |
+
+#### Lull
+
+| Phenotype | Variant |
+| --------- | ------- |
+| 00        | Grey    |
+| 01        | White   |
+| 10        | Purple  |
+| 11        | Blue    |
+
+#### Frazzil
+
+| Phenotype | Variant |
+| --------- | ------- |
+| 000       | Grey    |
+| 001       | White   |
+| 010       | Purple  |
+| 011       | Blue    |
+| 100       | Grey    |
+| 101       | White   |
+| 110       | Purple  |
+| 111       | Blue    |
+
+#### Thrombus
+
+| Phenotype | Variant      |
+| --------- | ------------ |
+| 000       | Black        |
+| 001       | White        |
+| 010       | Red          |
+| 011       | Pink         |
+| 100       | Indigo       |
+| 101       | Blue         |
+| 110       | Purple       |
+| 111       | BrightPurple |
+
+#### Zydrill
+
+| Phenotype | Variant |
+| --------- | ------- |
+| 000       | Black   |
+| 001       | White   |
+| 010       | Black   |
+| 011       | Green   |
+| 100       | Black   |
+| 101       | Yellow  |
+| 110       | Black   |
+| 111       | Yellow  |
+
+#### Seacomb
+
+| Phenotype | Variant   |
+| --------- | --------- |
+| 0000      | Black     |
+| 0001      | White     |
+| 0010      | Orange    |
+| 0011      | Yellow    |
+| 0100      | Green     |
+| 0101      | Green     |
+| 0110      | Green     |
+| 0111      | Green     |
+| 1000      | Black     |
+| 1001      | Blue      |
+| 1010      | Green     |
+| 1011      | Green     |
+| 1100      | Turquoise |
+| 1101      | Silver    |
+| 1110      | White     |
+| 1111      | White     |
