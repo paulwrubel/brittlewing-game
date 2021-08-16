@@ -32,6 +32,7 @@ public class Toolbar : MonoBehaviour
         {
             GameObject toolslotGO = Instantiate(toolslotPrefab, this.transform);
             RectTransform toolslotTransform = (RectTransform)toolslotGO.transform;
+            toolslotTransform.sizeDelta = toolslotSize;
             Toolslot toolslot = toolslotGO.GetComponent<Toolslot>();
             Toggle toolslotToggle = toolslotGO.GetComponent<Toggle>();
             if (i == 0)
