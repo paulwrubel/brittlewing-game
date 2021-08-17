@@ -50,7 +50,7 @@ public class Toolbar : MonoBehaviour
             toolslotTMP.text = toolslot.tool.displayName;
 
             toolslotToggle.group = toggleGroup;
-            toolslotToggle.onValueChanged.AddListener(delegate (bool isNowToggled)
+            toolslotToggle.onValueChanged.AddListener(isNowToggled =>
             {
                 if (isNowToggled)
                 {

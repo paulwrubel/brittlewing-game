@@ -1,4 +1,5 @@
 using UnityEngine;
+using TMPro;
 
 public class FlowerPlot : MonoBehaviour
 {
@@ -10,11 +11,14 @@ public class FlowerPlot : MonoBehaviour
     public Flower flower;
 
     private BoxCollider2D boxCollider2D;
+    private TextMeshProUGUI text;
 
     // Start is called before the first frame update
     void Start()
     {
         boxCollider2D = GetComponent<BoxCollider2D>();
+        text = GetComponentInChildren<TextMeshProUGUI>();
+        text.text = "";
     }
 
     // Update is called once per frame
@@ -24,7 +28,9 @@ public class FlowerPlot : MonoBehaviour
         {
             if (Input.GetMouseButtonDown(0) && !ContainsFlower())
             {
-                AddFlower(gameManager.selectedSpeciesType, new Genome(gameManager.selectedSpeciesType, gameManager.selectedGenomeString));
+                AddFlower(gameManager.selectedSpeciesType,
+                    new Genome(gameManager.selectedSpeciesType, gameManager.selectedGenomeString),
+                    GrowthStage.Seedling);
             }
             else if (Input.GetMouseButtonDown(1) && ContainsFlower())
             {
@@ -33,11 +39,16 @@ public class FlowerPlot : MonoBehaviour
         }
     }
 
-    public void AddFlower(SpeciesType speciesType, Genome genome)
+    public void AddFlower(SpeciesType speciesType, Genome genome, GrowthStage growthStage)
     {
         GameObject flowerGO = Instantiate(flowerPrefab, transform);
         flower = flowerGO.GetComponent<Flower>();
-        flower.Initialize(speciesType, genome);
+        flower.Initialize(speciesType, genome, growthStage);
+        text.text = flower.growthStage.ToString();
+        flower.onGrowth.AddListener(() =>
+        {
+            text.text = flower.growthStage.ToString();
+        });
     }
 
     public void RemoveFlower()

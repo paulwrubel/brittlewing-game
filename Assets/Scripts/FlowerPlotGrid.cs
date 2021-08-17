@@ -18,8 +18,8 @@ public class FlowerPlotGrid : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        grid = GetComponent<Grid>(); flowerPlots = new Dictionary<Vector2Int, FlowerPlot>(gridSize.x * gridSize.y);
-
+        grid = GetComponent<Grid>();
+        flowerPlots = new Dictionary<Vector2Int, FlowerPlot>(gridSize.x * gridSize.y);
 
         for (int x = 0; x < gridSize.x; x++)
         {
@@ -46,39 +46,80 @@ public class FlowerPlotGrid : MonoBehaviour
 
     public void BreedAll()
     {
-        List<Vector2Int> notAbleToBreed = new List<Vector2Int>();
-        foreach (KeyValuePair<Vector2Int, FlowerPlot> entry in flowerPlots.Shuffle())
+        Dictionary<Vector2Int, FlowerPlot> filledFlowerPlots = flowerPlots
+            .Where(e => e.Value.ContainsFlower())
+            .ToDictionary(e => e.Key, e => e.Value);
+
+        List<Vector2Int> unableToBreedThisRound = new List<Vector2Int>();
+
+        Dictionary<Vector2Int, FlowerPlot> breedableFlowerPlots = filledFlowerPlots
+            .Where(e => e.Value.flower.CanPollinate())
+            .ToDictionary(e => e.Key, e => e.Value);
+
+        Dictionary<Vector2Int, FlowerPlot> growableFlowerPlots = filledFlowerPlots
+            .Where(e => e.Value.flower.CanGrow())
+            .ToDictionary(e => e.Key, e => e.Value);
+
+        // first, try to breed flowers that are eligible
+        // flowers can only breed with other flowers that can breed
+        foreach (KeyValuePair<Vector2Int, FlowerPlot> entry in breedableFlowerPlots.Shuffle())
         {
             Vector2Int location = entry.Key;
             FlowerPlot flowerPlot = entry.Value;
-            if (!flowerPlot.ContainsFlower() || notAbleToBreed.Contains(location))
-            {
-                continue;
-            }
 
-            List<FlowerPlot> filledNeighbors = GetFilledNeighbors(location);
-            foreach (FlowerPlot filledNeighbor in filledNeighbors.Shuffle())
+            Flower flower = flowerPlot.flower;
+
+            Dictionary<Vector2Int, FlowerPlot> filledNeighbors = breedableFlowerPlots
+                .Where(e => e.Key.IsNeighboring(location))
+                .ToDictionary(e => e.Key, e => e.Value);
+
+            // print(string.Format("we are {0}", location));
+            // print(string.Format("neighbors are {0}", string.Join(",", filledNeighbors.Select(e => e.Key.ToString()))));
+
+            foreach (KeyValuePair<Vector2Int, FlowerPlot> neighbor in filledNeighbors.Shuffle())
             {
-                if (notAbleToBreed.Contains(filledNeighbor.coordinates))
+                Vector2Int neighborLocation = neighbor.Key;
+                FlowerPlot neighborFlowerPlot = neighbor.Value;
+
+                Flower neighborFlower = neighborFlowerPlot.flower;
+
+                bool willTryToBreedWithThisNeighbor = !unableToBreedThisRound.Contains(neighborLocation) &&
+                    neighborFlower.speciesType == flower.speciesType &&
+                    Random.value < flower.pollinationChance;
+
+                if (willTryToBreedWithThisNeighbor)
                 {
-                    continue;
-                }
-                if (filledNeighbor.flower.speciesType == flowerPlot.flower.speciesType)
-                {
-                    List<Vector2Int> emptyNeighbors = GetEmptyNeighbors(location);
+                    List<Vector2Int> emptyNeighbors = flowerPlots
+                        .Where(e => e.Key.IsNeighboring(location) && !e.Value.ContainsFlower())
+                        .Select(e => e.Key)
+                        .ToList();
+
                     if (emptyNeighbors.Count > 0)
                     {
                         Vector2Int emptyNeighbor = emptyNeighbors.RandomElement();
-                        notAbleToBreed.Add(location);
-                        notAbleToBreed.Add(filledNeighbor.coordinates);
-                        print(string.Format("breeding {0} with {1} into {2}", location, filledNeighbor.coordinates, emptyNeighbor));
-                        flowerPlots[emptyNeighbor].AddFlower(flowerPlot.flower.speciesType, flowerPlot.flower.genome.Cross(filledNeighbor.flower.genome));
-                        notAbleToBreed.Add(emptyNeighbor);
+
+                        unableToBreedThisRound.Add(location);
+                        unableToBreedThisRound.Add(neighborLocation);
+
+                        print(string.Format("breeding {0} with {1} into {2}", location, neighborLocation, emptyNeighbor));
+
+                        flowerPlots[emptyNeighbor].AddFlower(flowerPlot.flower.speciesType, flowerPlot.flower.genome.Cross(neighborFlower.genome), GrowthStage.Seedling);
+                        unableToBreedThisRound.Add(emptyNeighbor);
                     }
                 }
             }
         }
 
+        // next, grow flowers that are eligible
+        foreach (KeyValuePair<Vector2Int, FlowerPlot> entry in growableFlowerPlots)
+        {
+            Vector2Int location = entry.Key;
+            FlowerPlot flowerPlot = entry.Value;
+
+            Flower flower = flowerPlot.flower;
+
+            flower.AdvanceGrowthStage();
+        }
     }
 
     private List<FlowerPlot> GetFilledNeighbors(Vector2Int location)
