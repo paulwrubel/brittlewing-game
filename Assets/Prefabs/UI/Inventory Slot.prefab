@@ -148,7 +148,7 @@ GameObject:
   - component: {fileID: 4829695873467969519}
   - component: {fileID: 4263403482415103927}
   m_Layer: 5
-  m_Name: Item Sprite
+  m_Name: Sprite Image
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -220,6 +220,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8740220228444221515}
+  - component: {fileID: 2570839240159292367}
   - component: {fileID: 173956462419204259}
   - component: {fileID: 4501198661301324920}
   m_Layer: 5
@@ -250,6 +251,18 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 80, y: 80}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &2570839240159292367
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5271327230148946268}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 13c0c1a4e5366504e8e26440bc982888, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!222 &173956462419204259
 CanvasRenderer:
   m_ObjectHideFlags: 0

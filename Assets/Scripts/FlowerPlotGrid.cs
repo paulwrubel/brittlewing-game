@@ -53,11 +53,11 @@ public class FlowerPlotGrid : MonoBehaviour
         List<Vector2Int> unableToBreedThisRound = new List<Vector2Int>();
 
         Dictionary<Vector2Int, FlowerPlot> breedableFlowerPlots = filledFlowerPlots
-            .Where(e => e.Value.flower.CanPollinate())
+            .Where(e => e.Value.plantedFlower.flowerItem.CanPollinate())
             .ToDictionary(e => e.Key, e => e.Value);
 
         Dictionary<Vector2Int, FlowerPlot> growableFlowerPlots = filledFlowerPlots
-            .Where(e => e.Value.flower.CanGrow())
+            .Where(e => e.Value.plantedFlower.flowerItem.CanGrow())
             .ToDictionary(e => e.Key, e => e.Value);
 
         // first, try to breed flowers that are eligible
@@ -67,7 +67,8 @@ public class FlowerPlotGrid : MonoBehaviour
             Vector2Int location = entry.Key;
             FlowerPlot flowerPlot = entry.Value;
 
-            Flower flower = flowerPlot.flower;
+            PlantedFlower plantedFlower = flowerPlot.plantedFlower;
+            FlowerItem flowerItem = flowerPlot.plantedFlower.flowerItem;
 
             Dictionary<Vector2Int, FlowerPlot> filledNeighbors = breedableFlowerPlots
                 .Where(e => e.Key.IsNeighboring(location))
@@ -81,16 +82,17 @@ public class FlowerPlotGrid : MonoBehaviour
                 Vector2Int neighborLocation = neighbor.Key;
                 FlowerPlot neighborFlowerPlot = neighbor.Value;
 
-                Flower neighborFlower = neighborFlowerPlot.flower;
+                PlantedFlower neighborPlantedFlower = neighborFlowerPlot.plantedFlower;
+                FlowerItem neighborFlowerItem = neighborFlowerPlot.plantedFlower.flowerItem;
 
                 bool willTryToBreedWithThisNeighbor = !unableToBreedThisRound.Contains(neighborLocation) &&
-                    neighborFlower.speciesType == flower.speciesType &&
-                    Random.value < flower.pollinationChance;
+                    neighborFlowerItem.speciesType == flowerItem.speciesType &&
+                    Random.value < plantedFlower.pollinationChance;
 
                 if (willTryToBreedWithThisNeighbor)
                 {
                     List<Vector2Int> emptyNeighbors = flowerPlots
-                        .Where(e => e.Key.IsNeighboring(location) && !e.Value.ContainsFlower())
+                        .Where(e => e.Key.IsNeighboring(location) && e.Key.IsNeighboring(neighborLocation) && !e.Value.ContainsFlower())
                         .Select(e => e.Key)
                         .ToList();
 
@@ -103,7 +105,7 @@ public class FlowerPlotGrid : MonoBehaviour
 
                         print(string.Format("breeding {0} with {1} into {2}", location, neighborLocation, emptyNeighbor));
 
-                        flowerPlots[emptyNeighbor].AddFlower(flowerPlot.flower.speciesType, flowerPlot.flower.genome.Cross(neighborFlower.genome), GrowthStage.Seedling);
+                        flowerPlots[emptyNeighbor].AddFlower(new FlowerItem(flowerItem.speciesType, flowerItem.genome.Cross(neighborFlowerItem.genome), GrowthStage.Seedling));
                         unableToBreedThisRound.Add(emptyNeighbor);
                     }
                 }
@@ -116,9 +118,9 @@ public class FlowerPlotGrid : MonoBehaviour
             Vector2Int location = entry.Key;
             FlowerPlot flowerPlot = entry.Value;
 
-            Flower flower = flowerPlot.flower;
+            PlantedFlower plantedFlower = flowerPlot.plantedFlower;
 
-            flower.AdvanceGrowthStage();
+            plantedFlower.AdvanceGrowthStage();
         }
     }
 

@@ -19,7 +19,6 @@ public class Inventory : MonoBehaviour
         for (int i = 0; i < totalSlots; i++)
         {
             GameObject inventorySlotGO = Instantiate(inventorySlotPrefab, this.transform);
-            // FlowerPlot flowerPlot = inventorySlotGO.GetComponent<InventorySlot>();
         }
     }
 

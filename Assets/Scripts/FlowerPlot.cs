@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.Events;
 using TMPro;
 
 public class FlowerPlot : MonoBehaviour
@@ -8,7 +9,7 @@ public class FlowerPlot : MonoBehaviour
     public GameManager gameManager;
     public GameObject flowerPrefab;
 
-    public Flower flower;
+    public PlantedFlower plantedFlower;
 
     private BoxCollider2D boxCollider2D;
     private TextMeshProUGUI text;
@@ -28,9 +29,9 @@ public class FlowerPlot : MonoBehaviour
         {
             if (Input.GetMouseButtonDown(0) && !ContainsFlower())
             {
-                AddFlower(gameManager.selectedSpeciesType,
+                AddFlower(new FlowerItem(gameManager.selectedSpeciesType,
                     new Genome(gameManager.selectedSpeciesType, gameManager.selectedGenomeString),
-                    GrowthStage.Seedling);
+                    GrowthStage.Seedling));
             }
             else if (Input.GetMouseButtonDown(1) && ContainsFlower())
             {
@@ -39,26 +40,26 @@ public class FlowerPlot : MonoBehaviour
         }
     }
 
-    public void AddFlower(SpeciesType speciesType, Genome genome, GrowthStage growthStage)
+    public void AddFlower(FlowerItem flowerItem)
     {
-        GameObject flowerGO = Instantiate(flowerPrefab, transform);
-        flower = flowerGO.GetComponent<Flower>();
-        flower.Initialize(speciesType, genome, growthStage);
-        text.text = flower.growthStage.ToString();
-        flower.onGrowth.AddListener(() =>
+        GameObject plantedFlowerGO = Instantiate(flowerPrefab, transform);
+        plantedFlower = plantedFlowerGO.GetComponent<PlantedFlower>();
+        plantedFlower.Initialize(flowerItem);
+        text.text = plantedFlower.flowerItem.growthStage.ToString();
+        plantedFlower.onGrowth.AddListener(() =>
         {
-            text.text = flower.growthStage.ToString();
+            text.text = plantedFlower.flowerItem.growthStage.ToString();
         });
     }
 
     public void RemoveFlower()
     {
-        Destroy(flower.gameObject);
-        flower = null;
+        Destroy(plantedFlower);
+        plantedFlower = null;
     }
 
     public bool ContainsFlower()
     {
-        return flower != null;
+        return plantedFlower != null;
     }
 }
