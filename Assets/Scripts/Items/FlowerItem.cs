@@ -21,6 +21,19 @@ public class FlowerItem : Item
 
     public override Sprite GetSprite()
     {
+        return GetTopSprite();
+    }
+
+    public Sprite GetSideSprite()
+    {
+        return Resources.Load<Sprite>(string.Format("Sprites/Flowers/{0}/{2}/{0}{1}{2}Sprite",
+            this.speciesType.ToString(),
+            this.variantType.ToString(),
+            "Side"));
+    }
+
+    public Sprite GetTopSprite()
+    {
         return Resources.Load<Sprite>(string.Format("Sprites/Flowers/{0}/{2}/{0}{1}{2}Sprite",
             this.speciesType.ToString(),
             this.variantType.ToString(),

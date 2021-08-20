@@ -16,6 +16,7 @@ public class ToolSlot : MonoBehaviour
     private TextMeshProUGUI text;
     private Image spriteImage;
     private Image slotImage;
+    private bool addedOnValueChangedListener = false;
 
     void Awake()
     {
@@ -34,12 +35,14 @@ public class ToolSlot : MonoBehaviour
                 slotImage = image;
             }
         }
+
+        slotImage.color = unselectedColor;
     }
 
     // Start is called before the first frame update
     void Start()
     {
-        GameManager.Instance.cursor.onSelectItem.AddListener((Item item) =>
+        GameManager.Instance.cursor.onHoldItem.AddListener((Item item) =>
         {
             if (item != null)
             {
@@ -51,15 +54,7 @@ public class ToolSlot : MonoBehaviour
             }
         });
 
-        AddOnValueChangedListener(isNowToggled =>
-        {
-            if (isNowToggled)
-            {
-                GameManager.Instance.cursor.SetSelectedToolType(this.tool.type);
-                print(GameManager.Instance.cursor.GetSelectedToolType());
-            }
-            slotImage.color = isNowToggled ? selectedColor : unselectedColor;
-        });
+        TrySetupInternalListener();
 
         print("Setting up slot for tool: " + tool.type);
 
@@ -85,12 +80,42 @@ public class ToolSlot : MonoBehaviour
 
     public void SetSelected(bool isSelected)
     {
+        TrySetupInternalListener();
         toggle.isOn = isSelected;
-        slotImage.color = isSelected ? selectedColor : unselectedColor;
+        // slotImage.color = isSelected ? selectedColor : unselectedColor;
     }
 
     public void AddOnValueChangedListener(UnityAction<bool> call)
     {
         toggle.onValueChanged.AddListener(call);
+    }
+
+    public bool TrySetupInternalListener()
+    {
+        if (!addedOnValueChangedListener)
+        {
+            AddOnValueChangedListener(InternalOnValueChangedListener());
+            addedOnValueChangedListener = true;
+            return true;
+        }
+        return false;
+    }
+
+    private UnityAction<bool> InternalOnValueChangedListener()
+    {
+        return isNowToggled =>
+        {
+            if (isNowToggled)
+            {
+                Cursor cursor = GameManager.Instance.cursor;
+                cursor.SetSelectedToolType(this.tool.type);
+                print(cursor.GetSelectedToolType());
+                if (this.tool.type != ToolType.Scanner)
+                {
+                    cursor.SetSelectedItem(null);
+                }
+            }
+            slotImage.color = isNowToggled ? selectedColor : unselectedColor;
+        };
     }
 }

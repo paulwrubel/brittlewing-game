@@ -41,26 +41,33 @@ public class FlowerPlot : MonoBehaviour
             // if the mouse was clicked and there's not already a flower
             if (Input.GetMouseButtonDown(0))
             {
-                if (cursor.GetSelectedToolType() == ToolType.Spade)
+                switch (cursor.GetSelectedToolType())
                 {
-                    FlowerItem heldFlower = cursor.GetSelectedItem<FlowerItem>();
-                    if (!ContainsFlower() && heldFlower != null)
-                    {
-                        AddFlower(heldFlower);
-                        cursor.SetSelectedItem(null);
-                    }
-                    else if (ContainsFlower() && heldFlower == null)
-                    {
-                        cursor.SetSelectedItem(this.plantedFlower.flowerItem);
-                        RemoveFlower();
-                    }
-                }
-                else if (cursor.GetSelectedToolType() == ToolType.WateringCan)
-                {
-                    if (!isWatered)
-                    {
-                        SetIsWatered(true);
-                    }
+                    case ToolType.Spade:
+                        FlowerItem heldFlower = cursor.GetHeldItem<FlowerItem>();
+                        if (!ContainsFlower() && heldFlower != null)
+                        {
+                            AddFlower(heldFlower);
+                            cursor.SetHeldItem(null);
+                        }
+                        else if (ContainsFlower() && heldFlower == null)
+                        {
+                            cursor.SetHeldItem(this.plantedFlower.flowerItem);
+                            RemoveFlower();
+                        }
+                        break;
+                    case ToolType.WateringCan:
+                        if (!isWatered)
+                        {
+                            SetIsWatered(true);
+                        }
+                        break;
+                    case ToolType.Scanner:
+                        if (ContainsFlower())
+                        {
+                            cursor.SetSelectedItem(this.plantedFlower.flowerItem);
+                        }
+                        break;
                 }
             }
         }

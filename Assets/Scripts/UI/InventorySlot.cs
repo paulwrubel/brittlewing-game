@@ -50,31 +50,37 @@ public class InventorySlot : MonoBehaviour
             if (this.item != null)
             {
                 // if we can pick a thing up
-                if (cursor.GetSelectedToolType() == ToolType.Spade)
+                switch (cursor.GetSelectedToolType())
                 {
-                    FlowerItem heldFlower = cursor.GetSelectedItem<FlowerItem>();
+                    case ToolType.Spade:
+                        FlowerItem heldFlower = cursor.GetHeldItem<FlowerItem>();
 
-                    // if there's nothing being currently held
-                    if (heldFlower == null)
-                    {
-                        FlowerItem itemToHold = GetAndEmpty<FlowerItem>();
+                        // if there's nothing being currently held
+                        if (heldFlower == null)
+                        {
+                            FlowerItem itemToHold = GetAndEmpty<FlowerItem>();
 
-                        cursor.SetSelectedItem(itemToHold);
-                    }
+                            cursor.SetHeldItem(itemToHold);
+                        }
+                        break;
+                    case ToolType.Scanner:
+                        cursor.SetSelectedItem(GetItem<FlowerItem>());
+                        break;
                 }
+
             }
             else // if there's not an item in this slot
             {
                 // if we can place a thing here
                 if (cursor.GetSelectedToolType() == ToolType.Spade)
                 {
-                    FlowerItem heldFlower = cursor.GetSelectedItem<FlowerItem>();
+                    FlowerItem heldFlower = cursor.GetHeldItem<FlowerItem>();
 
                     // if there's nothing being currently held
                     if (heldFlower != null)
                     {
                         Fill(heldFlower);
-                        cursor.SetSelectedItem(null);
+                        cursor.SetHeldItem(null);
                     }
                 }
             }
@@ -94,11 +100,6 @@ public class InventorySlot : MonoBehaviour
         text.text = item.name;
         spriteImage.sprite = item.GetSprite();
         spriteImage.color = filledColor;
-    }
-
-    public Item GetItem()
-    {
-        return this.item;
     }
 
     public T GetItem<T>() where T : Item

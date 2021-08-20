@@ -16,6 +16,7 @@ public class Toolbar : MonoBehaviour
         new Tool(ToolType.WateringCan, "Watering Can"),
         new Tool(ToolType.Scanner, "Scanner"),
     };
+    private List<ToolSlot> toolSlots = new List<ToolSlot>();
 
     private RectTransform rectTransform;
     private ToggleGroup toggleGroup;
@@ -29,22 +30,33 @@ public class Toolbar : MonoBehaviour
         for (int i = 0; i < tools.Count; i++)
         {
             GameObject toolSlotGO = Instantiate(toolslotPrefab, this.transform);
-
             ToolSlot toolSlot = toolSlotGO.GetComponent<ToolSlot>();
+            toolSlots.Add(toolSlot);
 
             toolSlot.unselectedColor = this.unselectedSlotColor;
             toolSlot.selectedColor = this.selectedSlotColor;
 
             toolSlot.SetTool(tools[i]);
             toolSlot.SetToggleGroup(toggleGroup);
+            toolSlot.TrySetupInternalListener();
+        }
 
+        for (int i = tools.Count - 1; i >= 0; i--)
+        {
             if (i == 0)
             {
-                toolSlot.SetSelected(true);
+                toolSlots[i].SetSelected(true);
             }
             else
             {
-                toolSlot.SetSelected(false);
+                // this is to trip the internal state of the trigger to 
+                // recognize that it has "changed" (even though we do want
+                // it to be disabled at the start)
+                //
+                // this will trigger the onValueChanged listeners, 
+                // which setup sprites and whatnot
+                toolSlots[i].SetSelected(true);
+                toolSlots[i].SetSelected(false);
             }
         }
 

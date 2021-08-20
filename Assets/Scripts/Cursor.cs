@@ -8,8 +8,10 @@ public class Cursor : MonoBehaviour
 {
     public UnityEvent<ToolType> onSelectToolType;
     public UnityEvent<Item> onSelectItem;
+    public UnityEvent<Item> onHoldItem;
     private ToolType selectedToolType;
     private Item selectedItem;
+    private Item heldItem;
     private Image itemImage;
 
     private Canvas canvas;
@@ -27,6 +29,7 @@ public class Cursor : MonoBehaviour
 
         onSelectToolType = new UnityEvent<ToolType>();
         onSelectItem = new UnityEvent<Item>();
+        onHoldItem = new UnityEvent<Item>();
     }
 
     // Start is called before the first frame update
@@ -56,8 +59,19 @@ public class Cursor : MonoBehaviour
     public void SetSelectedItem(Item item)
     {
         this.selectedItem = item;
-        SetSprite(item == null ? null : item.GetSprite());
         onSelectItem.Invoke(item);
+    }
+
+    public T GetHeldItem<T>() where T : Item
+    {
+        return (T)this.heldItem;
+    }
+
+    public void SetHeldItem(Item item)
+    {
+        this.heldItem = item;
+        SetSprite(item == null ? null : item.GetSprite());
+        onHoldItem.Invoke(item);
     }
 
     public ToolType GetSelectedToolType()
