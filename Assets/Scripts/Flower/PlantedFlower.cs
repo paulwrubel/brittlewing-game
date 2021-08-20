@@ -9,18 +9,15 @@ public class PlantedFlower : MonoBehaviour
 
     private SpriteRenderer spriteRenderer;
 
-    public void Initialize(FlowerItem item)
+    void Awake()
     {
-        this.flowerItem = item;
+
     }
 
     void Start()
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
-        string spriteFilePath = string.Format("Sprites/Flowers/{0}{1}Sprite",
-            flowerItem.speciesType.ToString(),
-            flowerItem.variantType.ToString());
-        Sprite sprite = Resources.Load<Sprite>(spriteFilePath);
+        Sprite sprite = flowerItem.GetSprite();
         spriteRenderer.sprite = sprite;
     }
 

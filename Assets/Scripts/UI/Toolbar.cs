@@ -7,9 +7,12 @@ using TMPro;
 public class Toolbar : MonoBehaviour
 {
     public GameObject toolslotPrefab;
-    public List<Tool> tools = new List<Tool>()
+    public Color unselectedSlotColor;
+    public Color selectedSlotColor;
+
+    private List<Tool> tools = new List<Tool>()
     {
-        new Tool(ToolType.Picker, "Picker"),
+        new Tool(ToolType.Spade, "Spade"),
         new Tool(ToolType.WateringCan, "Watering Can"),
         new Tool(ToolType.Scanner, "Scanner"),
     };
@@ -25,23 +28,23 @@ public class Toolbar : MonoBehaviour
 
         for (int i = 0; i < tools.Count; i++)
         {
-            GameObject toolslotGO = Instantiate(toolslotPrefab, this.transform);
+            GameObject toolSlotGO = Instantiate(toolslotPrefab, this.transform);
 
-            Toolslot toolslot = toolslotGO.GetComponent<Toolslot>();
+            ToolSlot toolSlot = toolSlotGO.GetComponent<ToolSlot>();
 
-            toolslot.Initialize(tools[i], toggleGroup);
-            toolslot.AddOnValueChangedListener(isNowToggled =>
-            {
-                if (isNowToggled)
-                {
-                    GameManager.Instance.selectedTool = toolslot.tool.type;
-                    print(GameManager.Instance.selectedTool);
-                }
-            });
+            toolSlot.unselectedColor = this.unselectedSlotColor;
+            toolSlot.selectedColor = this.selectedSlotColor;
+
+            toolSlot.SetTool(tools[i]);
+            toolSlot.SetToggleGroup(toggleGroup);
 
             if (i == 0)
             {
-                toolslot.SetSelected(true);
+                toolSlot.SetSelected(true);
+            }
+            else
+            {
+                toolSlot.SetSelected(false);
             }
         }
 

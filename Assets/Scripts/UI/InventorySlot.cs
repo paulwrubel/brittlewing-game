@@ -9,19 +9,27 @@ public class InventorySlot : MonoBehaviour
 
     public Item item;
 
+    private Button button;
     private TextMeshProUGUI text;
     private Image spriteImage;
+    private readonly Color filledColor = Color.white;
+    private readonly Color emptyColor = new Color(
+        Color.white.r,
+        Color.white.g,
+        Color.white.b,
+        0);
 
-    // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
-        text = GetComponentInChildren<TextMeshProUGUI>();
+        this.button = GetComponent<Button>();
+        this.text = GetComponentInChildren<TextMeshProUGUI>();
+
         Image[] images = GetComponentsInChildren<Image>();
         foreach (Image image in images)
         {
             if (image.gameObject.name.Contains("Sprite"))
             {
-                spriteImage = image;
+                this.spriteImage = image;
             }
             // if (image.gameObject.name.Contains("Slot"))
             // {
@@ -29,8 +37,48 @@ public class InventorySlot : MonoBehaviour
             // }
         }
 
-        text.text = "";
-        spriteImage.sprite = null;
+        Empty();
+    }
+
+    // Start is called before the first frame update
+    void Start()
+    {
+        button.onClick.AddListener(() =>
+        {
+            Cursor cursor = GameManager.Instance.cursor;
+            // if there's an item here
+            if (this.item != null)
+            {
+                // if we can pick a thing up
+                if (cursor.GetSelectedToolType() == ToolType.Spade)
+                {
+                    FlowerItem heldFlower = cursor.GetSelectedItem<FlowerItem>();
+
+                    // if there's nothing being currently held
+                    if (heldFlower == null)
+                    {
+                        FlowerItem itemToHold = GetAndEmpty<FlowerItem>();
+
+                        cursor.SetSelectedItem(itemToHold);
+                    }
+                }
+            }
+            else // if there's not an item in this slot
+            {
+                // if we can place a thing here
+                if (cursor.GetSelectedToolType() == ToolType.Spade)
+                {
+                    FlowerItem heldFlower = cursor.GetSelectedItem<FlowerItem>();
+
+                    // if there's nothing being currently held
+                    if (heldFlower != null)
+                    {
+                        Fill(heldFlower);
+                        cursor.SetSelectedItem(null);
+                    }
+                }
+            }
+        });
     }
 
     // Update is called once per frame
@@ -39,12 +87,13 @@ public class InventorySlot : MonoBehaviour
 
     }
 
-    public void Fill(FlowerItem f)
+    public void Fill(Item item)
     {
-        this.item = f;
+        this.item = item;
 
-        text.text = f.speciesType.ToString();
-        spriteImage.sprite = null;
+        text.text = item.name;
+        spriteImage.sprite = item.GetSprite();
+        spriteImage.color = filledColor;
     }
 
     public Item GetItem()
@@ -70,5 +119,6 @@ public class InventorySlot : MonoBehaviour
 
         text.text = "";
         spriteImage.sprite = null;
+        spriteImage.color = emptyColor;
     }
 }

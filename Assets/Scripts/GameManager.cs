@@ -17,9 +17,7 @@ public class GameManager : MonoBehaviour
     }
 
     public FlowerPlotGrid flowerPlotGrid;
-    public SpeciesType selectedSpeciesType;
-    public string selectedGenomeString;
-    public ToolType selectedTool;
+    public Cursor cursor;
 
     void Awake()
     {
@@ -29,9 +27,7 @@ public class GameManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        selectedSpeciesType = SpeciesType.Popper;
-        selectedGenomeString = "11";
-        selectedTool = ToolType.Scanner;
+
     }
 
     // Update is called once per frame

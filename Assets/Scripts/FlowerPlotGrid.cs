@@ -44,7 +44,21 @@ public class FlowerPlotGrid : MonoBehaviour
 
     }
 
-    public void BreedAll()
+    public void AdvanceDay()
+    {
+        BreedOrGrowAll();
+        UnwaterAll();
+    }
+
+    private void UnwaterAll()
+    {
+        foreach (FlowerPlot flowerPlot in flowerPlots.Values)
+        {
+            flowerPlot.SetIsWatered(false);
+        }
+    }
+
+    private void BreedOrGrowAll()
     {
         Dictionary<Vector2Int, FlowerPlot> filledFlowerPlots = flowerPlots
             .Where(e => e.Value.ContainsFlower())
@@ -52,12 +66,18 @@ public class FlowerPlotGrid : MonoBehaviour
 
         List<Vector2Int> unableToBreedThisRound = new List<Vector2Int>();
 
+        // foreach (FlowerPlot filledPlot in filledFlowerPlots.Values)
+        // {
+        //     print("FILLED: " + filledPlot.coordinates);
+        //     print("CAN GROW?: " + filledPlot.CanGrow());
+        // }
+
         Dictionary<Vector2Int, FlowerPlot> breedableFlowerPlots = filledFlowerPlots
-            .Where(e => e.Value.plantedFlower.flowerItem.CanPollinate())
+            .Where(e => e.Value.CanPollinate())
             .ToDictionary(e => e.Key, e => e.Value);
 
         Dictionary<Vector2Int, FlowerPlot> growableFlowerPlots = filledFlowerPlots
-            .Where(e => e.Value.plantedFlower.flowerItem.CanGrow())
+            .Where(e => e.Value.CanGrow())
             .ToDictionary(e => e.Key, e => e.Value);
 
         // first, try to breed flowers that are eligible
@@ -66,6 +86,8 @@ public class FlowerPlotGrid : MonoBehaviour
         {
             Vector2Int location = entry.Key;
             FlowerPlot flowerPlot = entry.Value;
+
+            // print("BREEDABLE: " + flowerPlot.coordinates);
 
             PlantedFlower plantedFlower = flowerPlot.plantedFlower;
             FlowerItem flowerItem = flowerPlot.plantedFlower.flowerItem;
