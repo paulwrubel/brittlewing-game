@@ -7,6 +7,7 @@ public enum VariantType
     Green,
     Indigo,
     Orange,
+    OrangeWithBlackStripes,
     Pink,
     Purple,
     Red,

@@ -56,7 +56,7 @@ public class ToolSlot : MonoBehaviour
 
         TrySetupInternalListener();
 
-        print("Setting up slot for tool: " + tool.type);
+        // print("Setting up slot for tool: " + tool.type);
 
         text.text = tool.displayName;
         spriteImage.sprite = Resources.Load<Sprite>(tool.spriteFilePath);
@@ -109,7 +109,7 @@ public class ToolSlot : MonoBehaviour
             {
                 Cursor cursor = GameManager.Instance.cursor;
                 cursor.SetSelectedToolType(this.tool.type);
-                print(cursor.GetSelectedToolType());
+                // print(cursor.GetSelectedToolType());
                 if (this.tool.type != ToolType.Scanner)
                 {
                     cursor.SetSelectedItem(null);

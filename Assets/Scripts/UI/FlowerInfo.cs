@@ -10,9 +10,10 @@ public class FlowerInfo : MonoBehaviour
     private FlowerItem flowerItem;
     private Image flowerSideImage;
     private Image flowerTopImage;
-    private TextMeshProUGUI speciesValueText;
-    private TextMeshProUGUI variantValueText;
-    private TextMeshProUGUI genomeValueText;
+    private TextMeshProUGUI speciesText;
+    private TextMeshProUGUI variantText;
+    private TextMeshProUGUI genomeText;
+    private TextMeshProUGUI valueText;
 
     private readonly Color filledColor = Color.white;
     private readonly Color emptyColor = new Color(
@@ -32,14 +33,17 @@ public class FlowerInfo : MonoBehaviour
             .Find(t => t.gameObject.name.Contains("Flower Images")).GetComponentsInChildren<Image>().ToList()
             .Find(t => t.gameObject.name.Contains("Top"));
 
-        speciesValueText = children
+        speciesText = children
             .Find(t => t.gameObject.name.Contains("Species")).GetComponentsInChildren<TextMeshProUGUI>().ToList()
             .Find(t => t.gameObject.name.Contains("Value"));
-        variantValueText = children
+        variantText = children
             .Find(t => t.gameObject.name.Contains("Variant")).GetComponentsInChildren<TextMeshProUGUI>().ToList()
             .Find(t => t.gameObject.name.Contains("Value"));
-        genomeValueText = children
+        genomeText = children
             .Find(t => t.gameObject.name.Contains("Genome")).GetComponentsInChildren<TextMeshProUGUI>().ToList()
+            .Find(t => t.gameObject.name.Contains("Value"));
+        valueText = children
+            .Find(t => t.gameObject.name.Contains("FValue")).GetComponentsInChildren<TextMeshProUGUI>().ToList()
             .Find(t => t.gameObject.name.Contains("Value"));
     }
 
@@ -52,9 +56,10 @@ public class FlowerInfo : MonoBehaviour
         flowerTopImage.sprite = null;
         flowerTopImage.color = emptyColor;
 
-        speciesValueText.text = "";
-        variantValueText.text = "";
-        genomeValueText.text = "";
+        speciesText.text = "";
+        variantText.text = "";
+        genomeText.text = "";
+        valueText.text = "";
 
         GameManager.Instance.cursor.onSelectItem.AddListener((Item item) =>
         {
@@ -65,9 +70,10 @@ public class FlowerInfo : MonoBehaviour
                 flowerTopImage.sprite = null;
                 flowerTopImage.color = emptyColor;
 
-                speciesValueText.text = "";
-                variantValueText.text = "";
-                genomeValueText.text = "";
+                speciesText.text = "";
+                variantText.text = "";
+                genomeText.text = "";
+                valueText.text = "";
             }
             else
             {
@@ -78,9 +84,10 @@ public class FlowerInfo : MonoBehaviour
                 flowerTopImage.sprite = flowerItem.GetTopSprite();
                 flowerTopImage.color = filledColor;
 
-                speciesValueText.text = flowerItem.speciesType.ToString();
-                variantValueText.text = flowerItem.variantType.ToString();
-                genomeValueText.text = flowerItem.genome.GetGenotype();
+                speciesText.text = flowerItem.speciesType.ToString();
+                variantText.text = flowerItem.variantType.ToString();
+                genomeText.text = flowerItem.genome.GetGenotype();
+                valueText.text = string.Format("${0}", flowerItem.value.ToString());
             }
         });
     }

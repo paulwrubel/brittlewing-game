@@ -1,0 +1,175 @@
+{
+  "species": [
+    {
+      "speciesType": "Popper",
+      "rarity": "Common",
+      "traits": [
+        { "name": "Red", "symbol": "r" },
+        { "name": "White", "symbol": "w" }
+      ],
+      "variants": [
+        { "phenotype": "00", "variantType": "Black", "value": 6 },
+        { "phenotype": "01", "variantType": "White", "value": 8 },
+        { "phenotype": "10", "variantType": "Black", "value": 6 },
+        { "phenotype": "11", "variantType": "Red", "value": 5 }
+      ]
+    },
+    {
+      "speciesType": "Genie",
+      "rarity": "Common",
+      "traits": [
+        { "name": "Yellow", "symbol": "y" },
+        { "name": "White", "symbol": "w" }
+      ],
+      "variants": [
+        { "phenotype": "00", "variantType": "Black", "value": 16 },
+        { "phenotype": "01", "variantType": "White", "value": 12 },
+        { "phenotype": "10", "variantType": "Orange", "value": 14 },
+        { "phenotype": "11", "variantType": "Yellow", "value": 10 }
+      ]
+    },
+    {
+      "speciesType": "Lull",
+      "rarity": "Common",
+      "traits": [
+        { "name": "Blue", "symbol": "b" },
+        { "name": "White", "symbol": "w" }
+      ],
+      "variants": [
+        { "phenotype": "00", "variantType": "Grey", "value": 34 },
+        { "phenotype": "01", "variantType": "White", "value": 24 },
+        { "phenotype": "10", "variantType": "Purple", "value": 30 },
+        { "phenotype": "11", "variantType": "Blue", "value": 20 }
+      ]
+    },
+    {
+      "speciesType": "Frazzil",
+      "rarity": "Uncommon",
+      "traits": [
+        { "name": "Red", "symbol": "r" },
+        { "name": "Yellow", "symbol": "y" },
+        { "name": "White", "symbol": "w" }
+      ],
+      "variants": [
+        { "phenotype": "000", "variantType": "Black", "value": 80 },
+        { "phenotype": "001", "variantType": "White", "value": 80 },
+        { "phenotype": "010", "variantType": "Yellow", "value": 75 },
+        { "phenotype": "011", "variantType": "Yellow", "value": 75 },
+        { "phenotype": "100", "variantType": "Red", "value": 78 },
+        { "phenotype": "101", "variantType": "Pink", "value": 80 },
+        { "phenotype": "110", "variantType": "OrangeWithBlackStripes", "value": 75 },
+        { "phenotype": "111", "variantType": "Orange", "value": 65 }
+      ]
+    },
+    {
+      "speciesType": "Thrombus",
+      "rarity": "Uncommon",
+      "traits": [
+        { "name": "Blue", "symbol": "b" },
+        { "name": "Red", "symbol": "r" },
+        { "name": "White", "symbol": "w" }
+      ],
+      "variants": [
+        { "phenotype": "000", "variantType": "Black", "value": 140 },
+        { "phenotype": "001", "variantType": "White", "value": 135 },
+        { "phenotype": "010", "variantType": "Red", "value": 130 },
+        { "phenotype": "011", "variantType": "Pink", "value": 125 },
+        { "phenotype": "100", "variantType": "Indigo", "value": 135 },
+        { "phenotype": "101", "variantType": "Blue", "value": 125 },
+        { "phenotype": "110", "variantType": "Purple", "value": 115 },
+        { "phenotype": "111", "variantType": "BrightPurple", "value": 100 }
+      ]
+    },
+    {
+      "speciesType": "Zydrill",
+      "rarity": "Uncommon",
+      "traits": [
+        { "name": "Yellow", "symbol": "y" },
+        { "name": "Green", "symbol": "g" },
+        { "name": "White", "symbol": "w" }
+      ],
+      "variants": [
+        { "phenotype": "000", "variantType": "Black", "value": 180 },
+        { "phenotype": "001", "variantType": "White", "value": 275 },
+        { "phenotype": "010", "variantType": "Black", "value": 180 },
+        { "phenotype": "011", "variantType": "Green", "value": 250 },
+        { "phenotype": "100", "variantType": "Black", "value": 180 },
+        { "phenotype": "101", "variantType": "Yellow", "value": 200 },
+        { "phenotype": "110", "variantType": "Black", "value": 180 },
+        { "phenotype": "111", "variantType": "Yellow", "value": 200 }
+      ]
+    },
+    {
+      "speciesType": "Seacomb",
+      "rarity": "Rare",
+      "traits": [
+        { "name": "Blue", "symbol": "b" },
+        { "name": "Green", "symbol": "g" },
+        { "name": "Yellow", "symbol": "y" },
+        { "name": "White", "symbol": "w" }
+      ],
+      "variants": [
+        { "phenotype": "0000", "variantType": "Black", "value": 500 },
+        { "phenotype": "0001", "variantType": "White", "value": 500 },
+        { "phenotype": "0010", "variantType": "Orange", "value": 600 },
+        { "phenotype": "0011", "variantType": "Yellow", "value": 600 },
+        { "phenotype": "0100", "variantType": "Green", "value": 450 },
+        { "phenotype": "0101", "variantType": "Green", "value": 450 },
+        { "phenotype": "0110", "variantType": "Green", "value": 450 },
+        { "phenotype": "0111", "variantType": "Green", "value": 450 },
+        { "phenotype": "1000", "variantType": "Black", "value": 500 },
+        { "phenotype": "1001", "variantType": "Blue", "value": 525 },
+        { "phenotype": "1010", "variantType": "Green", "value": 450 },
+        { "phenotype": "1011", "variantType": "Green", "value": 450 },
+        { "phenotype": "1100", "variantType": "Turquoise", "value": 650 },
+        { "phenotype": "1101", "variantType": "Silver", "value": 600 },
+        { "phenotype": "1110", "variantType": "White", "value": 500 },
+        { "phenotype": "1111", "variantType": "White", "value": 500 }
+      ]
+    },
+    {
+      "speciesType": "Brittlewing",
+      "rarity": "Exotic",
+      "traits": [
+        { "name": "Blue", "symbol": "b" },
+        { "name": "Green", "symbol": "g" },
+        { "name": "Yellow", "symbol": "y" },
+        { "name": "White", "symbol": "w" }
+      ],
+      "variants": [
+        { "phenotype": "00000", "variantType": "Black", "value": 1200 },
+        { "phenotype": "00001", "variantType": "Void", "value": 2000 },
+        { "phenotype": "00010", "variantType": "White", "value": 1000 },
+        { "phenotype": "00011", "variantType": "Glowing", "value": 1500 },
+        { "phenotype": "00100", "variantType": "Blue", "value": 1050 },
+        { "phenotype": "00101", "variantType": "SparklyBlue", "value": 1550 },
+        { "phenotype": "00110", "variantType": "Coral", "value": 900 },
+        { "phenotype": "00111", "variantType": "Refractive", "value": 1400 },
+        { "phenotype": "01000", "variantType": "Green", "value": 1000 },
+        { "phenotype": "01001", "variantType": "PaperGreen", "value": 1500 },
+        { "phenotype": "01010", "variantType": "Chartreuse", "value": 1200 },
+        { "phenotype": "01011", "variantType": "Neon", "value": 1700 },
+        { "phenotype": "01100", "variantType": "Cyan", "value": 1100 },
+        { "phenotype": "01101", "variantType": "SparklyCyan", "value": 1650 },
+        { "phenotype": "01110", "variantType": "Coral", "value": 900 },
+        { "phenotype": "01111", "variantType": "Refractive", "value": 1400 },
+        { "phenotype": "10000", "variantType": "Red", "value": 1000 },
+        { "phenotype": "10001", "variantType": "SpottedRed", "value": 1400 },
+        { "phenotype": "10010", "variantType": "Pink", "value": 1050 },
+        { "phenotype": "10011", "variantType": "SpottedPink", "value": 1450 },
+        { "phenotype": "10100", "variantType": "Purple", "value": 1000 },
+        { "phenotype": "10101", "variantType": "PinkAndPurple", "value": 1500 },
+        { "phenotype": "10110", "variantType": "BrightPurple", "value": 1100 },
+        { "phenotype": "10111", "variantType": "Galaxy", "value": 1650 },
+        { "phenotype": "11000", "variantType": "Yellow", "value": 1000 },
+        { "phenotype": "11001", "variantType": "Sunshine", "value": 1450 },
+        { "phenotype": "11010", "variantType": "White", "value": 950 },
+        { "phenotype": "11011", "variantType": "Glowing", "value": 1500 },
+        { "phenotype": "11100", "variantType": "Grey", "value": 900 },
+        { "phenotype": "11101", "variantType": "Paper", "value": 1400 },
+        { "phenotype": "11110", "variantType": "Silver", "value": 1000 },
+        { "phenotype": "11111", "variantType": "Rainbow", "value": 1800 }
+      ]
+    }
+  ]
+}

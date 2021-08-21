@@ -60,7 +60,9 @@ public class Genome
 
     private List<Gene> ParseGenomeString(SpeciesType speciesType, string genomeString)
     {
-        List<Trait> traits = SpeciesDatabase.GetSpeciesBySpeciesType(speciesType).traits;
+        List<TraitEntry> traits = GameManager.Instance.flowerDatabase.data.species
+            .Find(s => s.speciesType == speciesType).traits;
+
         if (genomeString.Length != traits.Count)
         {
             throw new System.Exception(string.Format("invalid length of genome string ({0}) for species ({1})", genomeString, speciesType));
@@ -75,7 +77,7 @@ public class Genome
                 throw new System.Exception(string.Format("invalid gene number ({0}) provided to genome", geneChar.ToString()));
             }
 
-            char symbol = traits[i].symbol;
+            char symbol = traits[i].symbol[0];
             Zygosity zygosity;
             switch (geneChar)
             {

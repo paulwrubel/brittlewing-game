@@ -16,7 +16,7 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    public FlowerPlotGrid flowerPlotGrid;
+    public FlowerDatabase flowerDatabase;
     public Cursor cursor;
 
     void Awake()

@@ -14,9 +14,14 @@ public class FlowerItem : Item
         this.genome = genome;
         this.growthStage = growthStage;
 
-        this.variantType = SpeciesDatabase.GetVariantTypeBySpeciesTypeAndPhenotype(speciesType, genome.GetPhenotypeGeneric());
+        this.variantType = GameManager.Instance.flowerDatabase.data.species
+            .Find(s => s.speciesType == speciesType).variants
+            .Find(v => v.phenotype == genome.GetPhenotypeGeneric()).variantType;
 
         this.name = string.Format("{0} {1}", variantType, speciesType.ToString());
+        this.value = GameManager.Instance.flowerDatabase.data.species
+            .Find(s => s.speciesType == speciesType).variants
+            .Find(v => v.phenotype == genome.GetPhenotypeGeneric()).value;
     }
 
     public override Sprite GetSprite()
