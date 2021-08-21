@@ -3,6 +3,6 @@
 public struct VariantEntry
 {
     public string phenotype;
-    public VariantType variantType;
+    public string name;
     public int value;
 }

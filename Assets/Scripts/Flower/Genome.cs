@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.Linq;
+using UnityEngine;
 
 [System.Serializable]
 public class Genome
@@ -60,8 +61,14 @@ public class Genome
 
     private List<Gene> ParseGenomeString(SpeciesType speciesType, string genomeString)
     {
+        Debug.Log(speciesType);
+        Debug.Log(GameManager.Instance.flowerDatabase.data.species
+            .Find(s => EnumUtils.TryParse<SpeciesType>(s.name) == speciesType).traits);
+
         List<TraitEntry> traits = GameManager.Instance.flowerDatabase.data.species
-            .Find(s => s.speciesType == speciesType).traits;
+            .Find(s => EnumUtils.TryParse<SpeciesType>(s.name) == speciesType).traits;
+
+        Debug.Log(traits);
 
         if (genomeString.Length != traits.Count)
         {

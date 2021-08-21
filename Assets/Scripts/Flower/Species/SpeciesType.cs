@@ -7,9 +7,9 @@ public enum SpeciesType
     Thrombus,
     Zydrill,
     Seacomb,
+    Brittlewing,
     // Marzipoly,
     // Chrysalynn,
-    // Brittlewing,
     // Nebularaven,
     // Zorastapodia,
 }

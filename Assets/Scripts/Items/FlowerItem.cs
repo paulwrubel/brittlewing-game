@@ -14,13 +14,16 @@ public class FlowerItem : Item
         this.genome = genome;
         this.growthStage = growthStage;
 
-        this.variantType = GameManager.Instance.flowerDatabase.data.species
-            .Find(s => s.speciesType == speciesType).variants
-            .Find(v => v.phenotype == genome.GetPhenotypeGeneric()).variantType;
+        Debug.Log(GameManager.Instance.flowerDatabase.data.species
+            .Find(s => EnumUtils.TryParse<SpeciesType>(s.name) == speciesType).variants);
+
+        this.variantType = EnumUtils.TryParse<VariantType>(GameManager.Instance.flowerDatabase.data.species
+            .Find(s => EnumUtils.TryParse<SpeciesType>(s.name) == speciesType).variants
+            .Find(v => v.phenotype == genome.GetPhenotypeGeneric()).name);
 
         this.name = string.Format("{0} {1}", variantType, speciesType.ToString());
         this.value = GameManager.Instance.flowerDatabase.data.species
-            .Find(s => s.speciesType == speciesType).variants
+            .Find(s => EnumUtils.TryParse<SpeciesType>(s.name) == speciesType).variants
             .Find(v => v.phenotype == genome.GetPhenotypeGeneric()).value;
     }
 

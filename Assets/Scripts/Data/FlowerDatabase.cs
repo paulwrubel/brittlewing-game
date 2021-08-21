@@ -10,11 +10,22 @@ public class FlowerDatabase : MonoBehaviour
 
     void Awake()
     {
-
+        LoadDatabase();
     }
 
     // Start is called before the first frame update
     void Start()
+    {
+
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+
+    }
+
+    private void LoadDatabase()
     {
         TextAsset textAsset = Resources.Load<TextAsset>("Data/Flowers/data");
         // print(textAsset);
@@ -26,11 +37,5 @@ public class FlowerDatabase : MonoBehaviour
         // {
         //     test.Add(entry.speciesType.ToString());
         // }
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-
     }
 }
