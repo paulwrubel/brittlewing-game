@@ -3,12 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class Inventory : MonoBehaviour
+public class InventoryPanel : MonoBehaviour
 {
 
     public GameObject inventorySlotPrefab;
-    public int totalSlots;
-    public Item[] items;
+    public Inventory inventory;
 
     private GridLayoutGroup gridLayoutGroup;
     private InventorySlot[] slots;
@@ -18,20 +17,18 @@ public class Inventory : MonoBehaviour
     {
         gridLayoutGroup = GetComponent<GridLayoutGroup>();
 
-        items = new Item[totalSlots];
-        items[0] = new FlowerItem(SpeciesType.Popper, new Genome(SpeciesType.Popper, "11"), GrowthStage.Seedling);
-        items[1] = new FlowerItem(SpeciesType.Popper, new Genome(SpeciesType.Popper, "11"), GrowthStage.Seedling);
+        slots = new InventorySlot[inventory.size];
 
-        slots = new InventorySlot[totalSlots];
-
-        for (int i = 0; i < totalSlots; i++)
+        for (int i = 0; i < inventory.size; i++)
         {
             GameObject inventorySlotGO = Instantiate(inventorySlotPrefab, this.transform);
             InventorySlot inventorySlot = inventorySlotGO.GetComponent<InventorySlot>();
+            inventorySlot.inventory = this.inventory;
+            inventorySlot.index = i;
 
-            if (items[i] != null)
+            if (inventory.GetAt<Item>(i) != null)
             {
-                inventorySlot.Fill(items[i]);
+                inventorySlot.Fill(inventory.GetAt<Item>(i));
             }
 
             slots[i] = inventorySlot;

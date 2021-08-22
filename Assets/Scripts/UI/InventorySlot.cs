@@ -6,8 +6,8 @@ using TMPro;
 
 public class InventorySlot : MonoBehaviour
 {
-
-    public Item item;
+    public Inventory inventory;
+    public int index;
 
     private Button button;
     private TextMeshProUGUI text;
@@ -43,11 +43,27 @@ public class InventorySlot : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        this.inventory.onItemChange.AddListener((int updatedIndex) =>
+        {
+            if (this.index == updatedIndex)
+            {
+                Item item = this.inventory.GetAt<Item>(updatedIndex);
+                if (item == null)
+                {
+                    Empty();
+                }
+                else
+                {
+                    Fill(item);
+                }
+            }
+        });
+
         button.onClick.AddListener(() =>
         {
             Cursor cursor = GameManager.Instance.cursor;
             // if there's an item here
-            if (this.item != null)
+            if (this.inventory.GetAt<Item>(index) != null)
             {
                 // if we can pick a thing up
                 switch (cursor.GetSelectedToolType())
@@ -58,13 +74,13 @@ public class InventorySlot : MonoBehaviour
                         // if there's nothing being currently held
                         if (heldFlower == null)
                         {
-                            FlowerItem itemToHold = GetAndEmpty<FlowerItem>();
+                            FlowerItem itemToHold = this.inventory.GetAndEmptyAt<FlowerItem>(this.index);
 
                             cursor.SetHeldItem(itemToHold);
                         }
                         break;
                     case ToolType.Scanner:
-                        cursor.SetSelectedItem(GetItem<FlowerItem>());
+                        cursor.SetSelectedItem(this.inventory.GetAt<FlowerItem>(this.index));
                         break;
                 }
 
@@ -79,7 +95,7 @@ public class InventorySlot : MonoBehaviour
                     // if there's nothing being currently held
                     if (heldFlower != null)
                     {
-                        Fill(heldFlower);
+                        this.inventory.SetAt(this.index, heldFlower);
                         cursor.SetHeldItem(null);
                     }
                 }
@@ -95,29 +111,13 @@ public class InventorySlot : MonoBehaviour
 
     public void Fill(Item item)
     {
-        this.item = item;
-
         text.text = item.name;
         spriteImage.sprite = item.GetSprite();
         spriteImage.color = filledColor;
     }
 
-    public T GetItem<T>() where T : Item
-    {
-        return (T)this.item;
-    }
-
-    public T GetAndEmpty<T>() where T : Item
-    {
-        Item f = this.item;
-        Empty();
-        return (T)f;
-    }
-
     private void Empty()
     {
-        this.item = null;
-
         text.text = "";
         spriteImage.sprite = null;
         spriteImage.color = emptyColor;
