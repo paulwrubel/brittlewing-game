@@ -1,13 +1,15 @@
 ---
 name: Basic Issue Template
 about: This issue should apply to all actionable issues
-title: ''
+title: ""
 labels: feature
-assignees: ''
-
+assignees: ""
 ---
 
 ## Description
 
+The game should have...
+
 ## Acceptance Criteria
+
 - [ ]
