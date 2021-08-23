@@ -125,7 +125,7 @@ public class FlowerPlotGrid : MonoBehaviour
                         unableToBreedThisRound.Add(location);
                         unableToBreedThisRound.Add(neighborLocation);
 
-                        print(string.Format("breeding {0} with {1} into {2}", location, neighborLocation, emptyNeighbor));
+                        // print(string.Format("breeding {0} with {1} into {2}", location, neighborLocation, emptyNeighbor));
 
                         flowerPlots[emptyNeighbor].AddFlower(new FlowerItem(flowerItem.speciesType, flowerItem.genome.Cross(neighborFlowerItem.genome), GrowthStage.Seedling));
                         unableToBreedThisRound.Add(emptyNeighbor);
